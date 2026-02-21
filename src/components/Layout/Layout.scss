@@ -1,0 +1,60 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $color-background;
+
+  &__body {
+    display: grid;
+    grid-template-columns: $sidebar-width 1fr;
+    min-height: calc(100vh - #{$header-height});
+    align-items: start;
+  }
+
+  &__sidebar {
+    position: sticky;
+    top: $header-height;
+    height: calc(100vh - #{$header-height});
+    overflow-y: auto;
+    background-color: $color-white;
+    box-shadow: $shadow-sidebar;
+    z-index: 40;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  &__content {
+    padding: 60px 80px;
+    min-height: calc(100vh - #{$header-height});
+    overflow-x: hidden;
+  }
+
+  @include respond-to(md) {
+    &__body {
+      grid-template-columns: 1fr;
+    }
+
+    &__sidebar {
+      display: none;
+    }
+
+    &__content {
+      padding: 32px 24px;
+      min-height: calc(100vh - #{$header-height-sm});
+    }
+  }
+
+  @include respond-to(sm) {
+    &__body {
+      min-height: calc(100vh - #{$header-height-sm});
+    }
+
+    &__content {
+      padding: 20px 16px;
+    }
+  }
+}

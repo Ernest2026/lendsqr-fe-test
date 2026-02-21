@@ -1,0 +1,191 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+.header {
+  height: $header-height;
+  background-color: $color-white;
+  box-shadow: $shadow-header;
+  display: grid;
+  grid-template-columns: 308px 1fr 400px;
+  align-items: center;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  // Left: Logo
+  &__left {
+    @include flex-center;
+    justify-content: flex-start;
+  }
+
+  &__logo {
+    width: 144px;
+    height: 30px;
+  }
+
+  // Center: Search
+  &__center {
+    @include flex-center;
+    justify-content: flex-start;
+  }
+
+  &__search {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+    @include flex-between;
+    border: 1px solid rgba($color-primary, 0.2);
+    border-radius: $radius-md;
+    padding: 0;
+    gap: 12px;
+    overflow: hidden;
+
+    &-button {
+      background-color: $color-teal;
+      height: 100%;
+      width: 56px;
+      border: none;
+      cursor: pointer;
+      @include flex-center;
+      transition: $transition-bg;
+
+      &:hover { background-color: $color-teal-hover; }
+    }
+
+    &-icon {
+      width: 14px;
+      height: 14px;
+      color: $color-white;
+    }
+
+    &-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-family: $font-primary;
+      font-size: 14px;
+      color: $color-primary;
+      outline: none;
+      padding-left: 20px;
+
+      &::placeholder {
+        color: $color-secondary;
+        opacity: 0.7;
+      }
+    }
+  }
+
+  // Right: Actions
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    justify-self: end;
+  }
+
+  &__link {
+    font-family: $font-primary;
+    font-size: 16px;
+    font-weight: 400;
+    color: $color-primary;
+    transition: opacity 0.2s ease;
+
+    &:hover { opacity: 0.8; }
+  }
+
+  &__icon-button {
+    @include button-reset;
+    padding: 8px;
+    @include flex-center;
+    border-radius: $radius-sm;
+    transition: $transition-bg;
+
+    &:hover { background-color: $color-background; }
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__user-menu {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border-radius: $radius-sm;
+    cursor: pointer;
+    transition: $transition-bg;
+
+    &:hover { background-color: $color-background; }
+  }
+
+  &__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-full;
+    object-fit: cover;
+    background-color: $color-gray-dark;
+  }
+
+  &__user-name {
+    font-family: $font-primary;
+    font-size: 16px;
+    font-weight: 500;
+    color: $color-primary;
+    white-space: nowrap;
+    @include truncate;
+  }
+
+  &__dropdown-button {
+    @include button-reset;
+    padding: 4px;
+    @include flex-center;
+
+    img {
+      width: 16px;
+      height: 10px;
+    }
+  }
+
+  @include respond-to(md) {
+    grid-template-columns: auto 1fr auto;
+    padding: 0 20px;
+
+    &__search {
+      max-width: 200px;
+
+      &-input { font-size: 12px; }
+    }
+
+    &__right { gap: 16px; }
+    &__link  { font-size: 14px; }
+  }
+
+  @include respond-to(sm) {
+    height: $header-height-sm;
+    grid-template-columns: auto 1fr auto;
+    padding: 0 16px;
+    gap: 12px;
+
+    &__logo {
+      width: 100px;
+      height: auto;
+    }
+
+    &__search {
+      max-width: 150px;
+
+      &-input {
+        font-size: 11px;
+        padding-left: 12px;
+      }
+    }
+
+    &__right  { gap: 12px; }
+    &__user-name { display: none; }
+    &__link      { display: none; }
+  }
+}

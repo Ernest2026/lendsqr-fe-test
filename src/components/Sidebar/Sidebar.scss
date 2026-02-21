@@ -1,0 +1,94 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+.sidebar {
+  background-color: $color-white;
+  padding: 30px 0;
+  box-shadow: $shadow-sidebar;
+  overflow-y: auto;
+  scrollbar-width: none;
+  position: sticky;
+  top: $header-height;
+  max-height: calc(100vh - #{$header-height});
+
+  &::-webkit-scrollbar { display: none; }
+
+  // Organization switcher
+  &__org-button {
+    @include button-reset;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    color: $color-primary;
+    padding: 10px 30px;
+    margin-bottom: 40px;
+    transition: opacity 0.2s ease;
+
+    &:hover { opacity: 0.8; }
+  }
+
+  &__org-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  // Section groups
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__section-label {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    color: $color-secondary;
+    margin: 30px 30px 10px;
+    text-transform: capitalize;
+  }
+
+  // Nav items
+  &__nav-item {
+    @include button-reset;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    color: $color-primary;
+    padding: 10px 26px;
+    opacity: 0.6;
+    border-left: 4px solid transparent;
+    transition: all 0.2s ease;
+
+    &:hover { opacity: 0.8; }
+
+    &--active {
+      background-color: rgba($color-teal, 0.06);
+      border-left-color: $color-teal;
+      opacity: 1;
+    }
+  }
+
+  &__nav-item-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  // Divider
+  &__divider {
+    border: none;
+    border-top: 0.1px solid rgba($color-primary, 0.1);
+    margin: 60px 0 10px;
+  }
+
+  // Version label
+  &__version {
+    color: $color-primary;
+    font-size: 12px;
+    line-height: 14px;
+    margin: 30px;
+  }
+}
