@@ -7,9 +7,11 @@ import './Header.scss'
 
 interface HeaderProps {
   userName?: string
+  onToggleSidebar?: () => void
+  isSidebarOpen?: boolean
 }
 
-export default function Header({ userName = 'Admin' }: HeaderProps) {
+export default function Header({ userName = 'Admin', onToggleSidebar, isSidebarOpen = false }: HeaderProps) {
   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     // TODO: Implement search functionality
@@ -18,6 +20,17 @@ export default function Header({ userName = 'Admin' }: HeaderProps) {
   return (
     <header className="header" role="banner">
       <div className="header__left">
+        <button
+          className={`header__hamburger ${isSidebarOpen ? 'header__hamburger--open' : ''}`}
+          onClick={onToggleSidebar}
+          aria-label="Toggle sidebar"
+          title="Toggle navigation"
+          type="button"
+        >
+          <span className="header__hamburger-line" />
+          <span className="header__hamburger-line" />
+          <span className="header__hamburger-line" />
+        </button>
         <img src={logoIcon} alt="Lendsqr Logo" className="header__logo" />
       </div>
 

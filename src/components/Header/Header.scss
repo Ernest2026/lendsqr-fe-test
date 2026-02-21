@@ -17,6 +17,47 @@
   &__left {
     @include flex-center;
     justify-content: flex-start;
+    gap: 20px;
+  }
+
+  &__hamburger {
+    @include button-reset;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    gap: 5px;
+    cursor: pointer;
+
+    @include respond-to(md) {
+      display: flex;
+    }
+  }
+
+  &__hamburger-line {
+    width: 24px;
+    height: 2px;
+    background-color: $color-primary;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  &__hamburger--open {
+    .header__hamburger-line {
+      &:nth-child(1) {
+        transform: rotate(45deg) translateY(10px);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: rotate(-45deg) translateY(-10px);
+      }
+    }
   }
 
   &__logo {
@@ -176,12 +217,7 @@
     }
 
     &__search {
-      max-width: 150px;
-
-      &-input {
-        font-size: 11px;
-        padding-left: 12px;
-      }
+      display: none;
     }
 
     &__right  { gap: 12px; }

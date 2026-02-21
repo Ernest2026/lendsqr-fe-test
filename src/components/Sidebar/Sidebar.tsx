@@ -4,12 +4,17 @@ import { sidebarOptions, type SidebarOption } from '@/const/sidebar'
 import { useNavigate, useLocation } from 'react-router-dom'
 import './Sidebar.scss'
 
-export default function Sidebar() {
+interface SidebarProps {
+  onClose?: () => void
+}
+
+export default function Sidebar({ onClose }: SidebarProps) {
   const navigate = useNavigate()
   const location = useLocation()
 
   const handleNavigate = (path: string) => {
     navigate(path)
+    onClose?.()
   }
 
   const isActive = (path: string): boolean => {

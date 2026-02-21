@@ -94,9 +94,9 @@ export const UsersTable = ({ setUserPage, onUserSelect }: UsersTableProps) => {
                                 <th scope="col"><span>ORGANIZATION <UserFilters /></span></th>
                                 <th scope="col"><span>USERNAME <img src={sortIcon} alt="Sort" /></span></th>
                                 <th scope="col"><span>EMAIL <img src={sortIcon} alt="Sort" /></span></th>
-                                <th scope="col">PHONE NUMBER</th>
-                                <th scope="col">DATE JOINED</th>
-                                <th scope="col">STATUS</th>
+                                <th scope="col"><span>PHONE NUMBER <img src={sortIcon} alt="Sort" /></span></th>
+                                <th scope="col"><span>DATE JOINED <img src={sortIcon} alt="Sort" /></span></th>
+                                <th scope="col"><span>STATUS <img src={sortIcon} alt="Sort" /></span></th>
                                 <th scope="col" aria-label="Actions"></th>
                             </tr>
                         </thead>
