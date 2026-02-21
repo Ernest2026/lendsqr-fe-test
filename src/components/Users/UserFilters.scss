@@ -1,0 +1,94 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+.user-filters-container {
+  position: relative;
+  display: inline-block;
+}
+
+.user-filters {
+  background: $color-white;
+  border: 1px solid rgba($color-primary, 0.06);
+  border-radius: $radius-sm;
+  padding: 24px;
+  min-width: 280px;
+  height: fit-content;
+  position: absolute;
+  top: calc(100% + 20px);
+  left: -100px;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+  &__toggle {
+    @include button-reset;
+    @include flex-center;
+    position: relative;
+  }
+
+  &__form {
+    @include flex-col;
+    gap: 20px;
+  }
+
+  &__group {
+    @include flex-col;
+    gap: 6px;
+  }
+
+  &__label {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 500;
+    color: $color-secondary;
+    text-transform: capitalize;
+  }
+
+  &__input {
+    @include input-base;
+    font-size: 14px;
+    color: $color-secondary;
+
+    &::placeholder {
+      color: $color-gray-placeholder;
+    }
+
+    &[type="date"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      padding: 0 4px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  &__reset,
+  &__submit {
+    flex: 1;
+    padding: 10px 16px;
+    border-radius: $radius-sm;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: $font-primary;
+    border: none;
+  }
+
+  &__reset {
+    background: $color-white;
+    color: $color-secondary;
+    border: 1px solid $color-secondary;
+
+    &:hover { background: rgba($color-secondary, 0.051); }
+  }
+
+  &__submit {
+    background: $color-teal;
+    color: $color-white;
+
+    &:hover { background: $color-teal-hover; }
+  }
+}

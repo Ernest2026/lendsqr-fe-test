@@ -1,0 +1,99 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+.users-page {
+  font-family: $font-primary;
+
+  &__title {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    color: $color-primary;
+    margin: 0 0 40px;
+  }
+}
+
+// Stats grid
+.users-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+  margin-bottom: 32px;
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(md) {
+    grid-template-columns: 1fr;
+  }
+
+  @include respond-to(sm) {
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  @include respond-to(xs) {
+    gap: 12px;
+  }
+}
+
+// Stat card
+.user-stat-card {
+  @include card;
+  padding: 20px 30px 30px;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba($color-primary, 0.1);
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: $radius-full;
+    background: rgba(223, 24, 255, 0.1);
+    @include flex-center;
+
+    img {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  &__name {
+    margin: 14px 0 12px;
+    color: $color-secondary;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  &__number {
+    margin: 0;
+    font-size: 24px;
+    line-height: 28px;
+    text-transform: uppercase;
+    color: $color-primary;
+    font-weight: 600;
+  }
+
+  @include respond-to(sm) {
+    padding: 16px 20px 20px;
+  }
+
+  @include respond-to(xs) {
+    &__name   { font-size: 12px; }
+    &__number { font-size: 18px; }
+  }
+}
+
+// Responsive title adjustment
+@include respond-to(md) {
+  .users-page__title {
+    margin-bottom: 24px;
+    font-size: 20px;
+  }
+}

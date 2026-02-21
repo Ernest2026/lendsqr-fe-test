@@ -1,4 +1,5 @@
 export { default as Header } from './Header/Header'
 export { default as Layout } from './Layout/Layout'
 export { default as Sidebar } from './Sidebar/Sidebar'
-
+export { UsersTable } from './Users/UsersTable'
+export { default as UserDetails } from './Users/UserDetails'

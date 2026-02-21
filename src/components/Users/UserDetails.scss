@@ -1,0 +1,376 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+.user-details {
+  font-family: $font-primary;
+
+  // State messages
+  &-loading,
+  &-error {
+    padding: 60px 30px;
+    text-align: center;
+    background: $color-white;
+    border-radius: $radius-sm;
+    min-height: 300px;
+    @include flex-center;
+    flex-direction: column;
+  }
+
+  &-loading { color: $color-secondary; font-size: 16px; }
+
+  &-error {
+    color: $color-danger;
+
+    button {
+      margin-top: 12px;
+      padding: 10px 20px;
+      background-color: $color-teal;
+      color: $color-white;
+      border: none;
+      border-radius: $radius-sm;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+
+      &:hover { background-color: $color-teal-hover; }
+    }
+  }
+
+  // Header
+  &__header {
+    @include flex-between;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 20px;
+  }
+}
+
+// Back button
+.back-button {
+  @include button-reset;
+  color: $color-secondary;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  transition: color 0.2s ease;
+
+  &:hover { color: $color-primary; }
+}
+
+// Action buttons (Blacklist / Activate)
+.action-btn {
+  padding: 12px 20px;
+  border-radius: $radius-sm;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 2px solid;
+  transition: all 0.2s ease;
+  background: $color-white;
+
+  &--blacklist {
+    @include action-btn($color-danger);
+  }
+
+  &--activate {
+    @include action-btn($color-teal);
+  }
+}
+
+// Profile card
+.profile-card {
+  background: $color-white;
+  border-radius: $radius-sm;
+  padding: 30px 30px 0;
+  margin-bottom: 30px;
+
+  &__top {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  &__details {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+
+    hr {
+      width: 0;
+      height: 80px;
+      border: 1px solid rgba($color-secondary, 0.2);
+    }
+  }
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: $radius-full;
+  background: rgba($color-primary, 0.16);
+  @include flex-center;
+  flex-shrink: 0;
+}
+
+.profile-info {
+  @include flex-col;
+  gap: 8px;
+}
+
+.profile-name {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+  color: $color-primary;
+}
+
+.profile-id {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: $color-secondary;
+}
+
+.detail-item {
+  @include flex-col;
+  gap: 10px;
+
+  label {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: $color-secondary;
+    text-transform: uppercase;
+  }
+
+  .detail-amount {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    color: $color-primary;
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: $color-primary;
+  }
+}
+
+.star-rating {
+  display: flex;
+  gap: 4px;
+}
+
+// Tabs
+.tabs-container {
+  background: $color-white;
+  overflow-x: auto;
+  margin-top: 51px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tab {
+  @include button-reset;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  padding: 0 16px 10px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &:first-child { margin-left: 0; }
+  &:hover       { color: $color-primary; }
+
+  &.active {
+    color: $color-teal;
+    border-bottom-color: $color-teal;
+  }
+}
+
+// Tab content
+.tab-content {
+  background: $color-white;
+  border: 0.2px solid rgba($color-primary, 0.06);
+  border-top: none;
+  border-radius: 0 0 $radius-sm $radius-sm;
+  padding: 32px 24px;
+}
+
+.tab-placeholder {
+  @include flex-center;
+  min-height: 300px;
+  color: $color-secondary;
+  font-size: 16px;
+}
+
+// Content sections
+.content-section {
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba($color-primary, 0.1);
+
+  &:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.section-title {
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 500;
+  color: $color-primary;
+  padding: 30px 0;
+  text-transform: capitalize;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+}
+
+// 2nd section uses 4 columns
+.content-section:nth-child(2) .info-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.info-item {
+  @include flex-col;
+
+  label {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: $color-secondary;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: $color-secondary;
+  }
+}
+
+.guarantor-card {
+  margin-bottom: 30px;
+}
+
+// Responsive
+@include respond-to(lg) {
+  .info-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@include respond-to(md) {
+  .user-details {
+    padding: 16px;
+  }
+
+  .profile-card {
+    padding: 16px;
+
+    &__top     { flex-direction: column; }
+    &__details { flex-direction: column; gap: 16px; }
+  }
+
+  .info-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .tabs     { padding: 0 16px; }
+  .tab-content { padding: 20px 16px; }
+
+  .user-details__actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@include respond-to(sm) {
+  .user-details {
+    padding: 12px;
+  }
+
+  .user-details__header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+
+  .user-details__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .action-btn { width: 100%; }
+
+  .profile-card { padding: 12px; }
+
+  .profile-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .profile-name { font-size: 18px; }
+
+  .tabs {
+    overflow-x: auto;
+    padding: 0 12px;
+  }
+
+  .tab {
+    margin: 0 12px;
+    font-size: 12px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .tab-content  { padding: 16px 12px; }
+  .section-title { font-size: 14px; margin-bottom: 16px; }
+}
+
+@include respond-to(xs) {
+  .user-details { padding: 8px; }
+  .profile-name { font-size: 16px; }
+
+  .detail-item {
+    label { font-size: 10px; }
+    p     { font-size: 12px; }
+  }
+
+  .info-item {
+    label { font-size: 10px; }
+    p     { font-size: 12px; }
+  }
+
+  .tab {
+    font-size: 11px;
+    margin: 0 8px;
+    padding: 12px 0;
+  }
+}
