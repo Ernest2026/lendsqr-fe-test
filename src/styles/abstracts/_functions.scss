@@ -1,0 +1,19 @@
+// =============================================================================
+// Functions — SCSS utility functions
+// =============================================================================
+@use 'variables' as *;
+
+// Convert px to rem
+@function rem($px, $base: 16) {
+  @return #{$px / $base}rem;
+}
+
+// Get alpha variant of primary color
+@function primary-alpha($alpha) {
+  @return rgba($color-primary, $alpha);
+}
+
+// Get alpha variant of secondary color
+@function secondary-alpha($alpha) {
+  @return rgba($color-secondary, $alpha);
+}

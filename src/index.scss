@@ -1,0 +1,71 @@
+// =============================================================================
+// Global Styles — Entry point
+// =============================================================================
+@use './styles/abstracts/variables' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Avenir+Next&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+
+// CSS Custom Properties (kept for compatibility with existing components)
+:root {
+  --color-primary:       #{$color-primary};
+  --color-primary-dark:  #{$color-primary-dark};
+  --color-secondary:     #{$color-secondary};
+  --color-accent:        #{$color-accent};
+  --color-white:         #{$color-white};
+  --color-purple-light:  #{$color-purple-light};
+  --color-purple-dark:   #{$color-purple-dark};
+  --color-orange:        #{$color-orange};
+  --color-success:       #39CD62;
+  --color-danger:        #{$color-danger};
+  --color-warning:       #{$color-pending};
+  --color-teal:          #{$color-teal};
+  --color-background:    #{$color-background};
+  --color-bg-light:      #{$color-bg-light};
+  --color-gray-dark:     #{$color-gray-dark};
+  --font-primary:        #{$font-primary};
+  --font-login:          #{$font-login};
+}
+
+// Global reset
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-primary;
+  color: $color-primary;
+  background-color: $color-background;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $color-primary;
+  font-weight: 600;
+}
+
+p {
+  color: $color-secondary;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: $font-primary;
+}
+
+button {
+  cursor: pointer;
+}

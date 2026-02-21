@@ -1,0 +1,7 @@
+@use './styles/abstracts/variables' as *;
+
+.app {
+  font-family: $font-primary;
+  min-height: 100vh;
+  background-color: $color-background;
+}

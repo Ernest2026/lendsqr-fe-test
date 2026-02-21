@@ -1,0 +1,101 @@
+// =============================================================================
+// Mixins — Reusable style patterns
+// =============================================================================
+@use 'variables' as *;
+
+// Responsive breakpoints
+@mixin respond-to($bp) {
+  @if $bp == xs      { @media (max-width: $bp-xs)  { @content; } }
+  @else if $bp == sm { @media (max-width: $bp-sm)  { @content; } }
+  @else if $bp == md { @media (max-width: $bp-md)  { @content; } }
+  @else if $bp == lg { @media (max-width: $bp-lg)  { @content; } }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+// Button reset
+@mixin button-reset {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: $font-primary;
+}
+
+// Card container
+@mixin card {
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+}
+
+// Input base
+@mixin input-base {
+  padding: 10px 12px;
+  border: 1px solid $color-border-input;
+  border-radius: $radius-sm;
+  font-size: 14px;
+  font-family: $font-primary;
+  font-weight: 400;
+  color: $color-secondary;
+  transition: $transition-base;
+  width: 100%;
+
+  &::placeholder { color: #B4B8BD; }
+
+  &:focus {
+    outline: none;
+    border-color: $color-teal;
+    box-shadow: 0 0 0 3px rgba($color-teal, 0.1);
+  }
+}
+
+// Outlined action button
+@mixin action-btn($color) {
+  padding: 12px 20px;
+  border-radius: $radius-sm;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 2px solid $color;
+  color: $color;
+  background: $color-white;
+  transition: $transition-base;
+
+  &:hover {
+    background: $color;
+    color: $color-white;
+  }
+}
+
+// Status badge
+@mixin status-badge($bg, $color) {
+  background: $bg;
+  color: $color;
+}
+
+// Truncate text
+@mixin truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
