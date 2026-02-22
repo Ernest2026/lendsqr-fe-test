@@ -95,19 +95,36 @@ export default function UserDetails({ setUserPage, userId = '1' }: UserDetailsPr
             <img src={outlineUserIcon} alt="" aria-hidden="true" />
           </div>
           <div className="profile-card__details">
+            <div className="profile-avatar profile-avatar--mobile" role="img" aria-label="User avatar">
+              <img src={outlineUserIcon} alt="" aria-hidden="true" />
+            </div>
             <div className="profile-info">
               <h2 className="profile-name">{userData.fullName}</h2>
               <p className="profile-id">{userData.id}</p>
             </div>
 
-            <hr aria-hidden="true" />
+            <hr aria-hidden="true" className="profile-hr--desktop" />
 
+            <div className="profile-details--desktop">
+              <div className="detail-item">
+                <label>User's Tier</label>
+                {renderStarRating(userData.tier)}
+              </div>
+
+              <hr aria-hidden="true" />
+
+              <div className="detail-item">
+                <label className="detail-amount">₦{userData.amount.toLocaleString()}</label>
+                <p className="detail-value">{userData.accountNumber}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="profile-details--mobile">
             <div className="detail-item">
               <label>User's Tier</label>
               {renderStarRating(userData.tier)}
             </div>
-
-            <hr aria-hidden="true" />
 
             <div className="detail-item">
               <label className="detail-amount">₦{userData.amount.toLocaleString()}</label>
