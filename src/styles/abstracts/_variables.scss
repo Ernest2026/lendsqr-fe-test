@@ -5,6 +5,7 @@
 // Primary Colors
 $color-primary:       #213f7d;
 $color-primary-dark:  #213F7D;
+$color-primary-light: #4A5F99;
 $color-secondary:     #545F7D;
 $color-accent:        #FF3366;
 $color-white:         #FFFFFF;
@@ -14,8 +15,17 @@ $color-teal:          #39CDCC;
 $color-teal-hover:    #30b3b1;
 $color-success:       #22C144;
 $color-danger:        #E4033B;
+$color-error:         #E4033B;
 $color-warning:       #ffc200;
 $color-pending:       #E9B200;
+
+// Text Colors
+$color-text-primary:  #213f7d;
+$color-text-secondary: #545F7D;
+$color-text-disabled: #B4B8BD;
+
+// Background Colors
+$color-background-secondary: #F5F5F5;
 
 // Purple variants (stat card icons)
 $color-purple-light:  #5718FF;

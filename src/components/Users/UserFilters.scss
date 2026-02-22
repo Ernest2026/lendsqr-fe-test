@@ -28,33 +28,28 @@
   &__form {
     @include flex-col;
     gap: 20px;
-  }
 
-  &__group {
-    @include flex-col;
-    gap: 6px;
-  }
+    // Override form-group defaults to match original filter styles
+    .form-group {
+      gap: 6px;
+      margin-bottom: 0;
 
-  &__label {
-    font-size: 14px;
-    line-height: 16px;
-    font-weight: 500;
-    color: $color-secondary;
-    text-transform: capitalize;
-  }
+      &__label {
+        font-size: 14px;
+        line-height: 16px;
+        font-weight: 500;
+        color: $color-secondary;
+        text-transform: capitalize;
+      }
 
-  &__input {
-    @include input-base;
-    font-size: 14px;
-    color: $color-secondary;
+      &__input {
+        &::placeholder { color: $color-gray-placeholder; }
 
-    &::placeholder {
-      color: $color-gray-placeholder;
-    }
-
-    &[type="date"]::-webkit-calendar-picker-indicator {
-      cursor: pointer;
-      padding: 0 4px;
+        &[type='date']::-webkit-calendar-picker-indicator {
+          cursor: pointer;
+          padding: 0 4px;
+        }
+      }
     }
   }
 

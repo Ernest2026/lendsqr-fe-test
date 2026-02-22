@@ -60,23 +60,38 @@
     margin-bottom: 60px;
   }
 
-  &__form {
-    @include flex-col;
+  &__error {
+    padding: 12px 16px;
+    margin-bottom: 24px;
+    background-color: rgba($color-danger, 0.08);
+    border-left: 4px solid $color-danger;
+    color: $color-danger;
+    border-radius: 5px;
+    font-size: 14px;
   }
 
-  &__input {
-    @include input-base;
-    padding: 12px 16px;
-    font-size: 14px;
-    border: 2px solid rgba($color-secondary, 0.15);
-    border-radius: 5px;
-    color: $color-primary;
-    background-color: $color-white;
-    margin-bottom: 24px;
+  &__form {
+    @include flex-col;
 
-    &:focus {
-      border-color: $color-teal;
-      box-shadow: 0 0 0 1px rgba($color-primary, 0.1);
+    // Override form-group defaults to match the original login input design
+    .form-group {
+      gap: 0;
+      margin-bottom: 24px;
+
+      &__input {
+        padding: 12px 16px;
+        border: 2px solid rgba($color-secondary, 0.15);
+        border-radius: 5px;
+        color: $color-primary;
+        background-color: $color-white;
+        font-size: 14px;
+        width: 100%;
+
+        &:focus {
+          border-color: $color-teal;
+          box-shadow: 0 0 0 1px rgba($color-primary, 0.1);
+        }
+      }
     }
   }
 
