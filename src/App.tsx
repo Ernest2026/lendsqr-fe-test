@@ -40,9 +40,6 @@ function App() {
                 <Route path="/users" element={<UsersPage />} />
                 <Route path="/*" element={<NotFoundPage />} />
               </Route>
-
-              {/* Redirect root to users */}
-              <Route path="/" element={<Navigate to="/users" replace />} />
             </Routes>
           </BrowserRouter>
         </div>
