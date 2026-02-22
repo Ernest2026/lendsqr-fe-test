@@ -15,8 +15,11 @@ This is a **single-page application (SPA)** built with React and TypeScript that
 
 - **Framework**: React 19 with TypeScript
 - **Build Tool**: Vite (fast dev server and optimized builds)
-- **Routing**: React Router v7
-- **State Management**: React Query (TanStack Query) for server-state management
+- **Routing**: React Router v7 with protected routes
+- **State Management**: 
+  - React Query (TanStack Query) for server-state management
+  - React Context API for authentication state
+- **Form Management**: React Hook Form with custom form components
 - **Styling**: SCSS with modular component-scoped styles
 - **Linting**: ESLint with TypeScript support
 - **Package Manager**: npm
@@ -26,19 +29,23 @@ This is a **single-page application (SPA)** built with React and TypeScript that
 ```
 src/
 ├── pages/              # Top-level page components
-│   ├── Login.tsx       # Login page
+│   ├── Login.tsx       # Login page with authentication
 │   ├── Users.tsx       # Users dashboard
 │   └── NotFound.tsx    # 404 page
 ├── components/         # Reusable UI components
 │   ├── Layout/         # Main dashboard layout wrapper
-│   ├── Header/         # Top navigation bar
-│   ├── Sidebar/        # Left navigation sidebar
+│   ├── Header/         # Top navigation bar with hamburger menu
+│   ├── Sidebar/        # Left navigation sidebar with mobile toggle
+│   ├── ProtectedRoute/ # Route guard for authenticated pages
+│   ├── Form/           # Reusable form components (Input, Select, Checkbox, Textarea)
 │   └── Users/          # User-related components
 │       ├── Users.tsx           # Users list view
 │       ├── UsersTable.tsx       # Users table with sorting
-│       ├── UserFilters.tsx      # Filter controls
+│       ├── UserFilters.tsx      # Advanced filter controls with react-hook-form
 │       ├── UserDetails.tsx      # Individual user profile
 │       └── UserActions.tsx      # Action buttons per user
+├── context/            # React Context for state management
+│   └── AuthContext.tsx # Authentication state and logic
 ├── services/           # API/data services
 │   └── userService.ts  # User data fetching logic
 ├── styles/             # Global SCSS utilities
@@ -52,14 +59,28 @@ src/
 ## Key Features
 
 ### 1. **Authentication**
-   - Simple login page with email and password fields
-   - Routes to users dashboard on successful login
-   - Session state persisted through app navigation
+   - **Login System**: Email/password authentication with validation
+   - **Session Persistence**: User session saved to localStorage
+   - **Protected Routes**: Dashboard routes accessible only when authenticated
+   - **Auth Context**: Centralized authentication state via React Context
+   - Redirects unauthenticated users to login page
 
-### 2. **Users Management**
+### 2. **Form Components System** (React Hook Form Integration)
+   - **FormInput**: Text, email, password, tel, date inputs with validation
+   - **FormSelect**: Dropdown selects with custom options
+   - **FormCheckbox**: Checkbox inputs with label support
+   - **FormTextarea**: Multi-line text inputs
+   - **Features**:
+     - Built-in error message display
+     - Required field markers
+     - Consistent styling across the app
+     - Full TypeScript support with generics
+     - Used in Login page and User Filters
+
+### 3. **Users Management**
    - **List View**: Displays all users in a paginated table
-   - **Filtering**: Filter users by organization, status, or custom criteria
-   - **Search**: Find users by email, username, or phone number
+   - **Advanced Filtering**: Filter users by organization, status, username, email, phone, and date using form components
+   - **Real-time Search**: Find users as you type
    - **User Details**: View comprehensive user profile including:
      - Personal information (full name, email, phone, BVN)
      - Financial details (account number, tier, monthly income)
@@ -67,21 +88,30 @@ src/
      - Social media profiles
      - Guarantor information
 
-### 3. **Responsive Design**
-   - Sidebar navigation for easy access to sections
-   - Header with branding and user controls
-   - Mobile-friendly layout (SCSS media queries)
-   - Consistent styling using SCSS variables and mixins
+### 4. **Responsive Design**
+   - **Mobile (< 768px)**:
+     - Sidebar hidden by default with hamburger menu toggle
+     - Search input hidden to save space
+     - Hamburger icon transforms to X when opened
+   - **Tablet (768px - 1024px)**:
+     - Sidebar visible with hamburger menu available
+     - User cards stacked 2 per row
+     - Stats displayed in 2-column grid layout
+   - **Desktop (> 1024px)**:
+     - Full sidebar always visible
+     - Full width layouts
+     - Optimized spacing and typography
 
-### 4. **Performance**
+### 5. **Performance**
    - React Query for intelligent data caching and synchronization
    - Simulated 500ms network delay for realistic UX testing
    - Optimized bundle with Vite
+   - Code splitting on routes
 
 ## Getting Started
 
 ### Prerequisites
-- Node.js 16+ and npm installed
+- Node.js 18+ and npm installed
 
 ### Installation
 
@@ -113,18 +143,64 @@ src/
 
 ## How It Works
 
+### Authentication Flow
+1. User visits app → redirected to `/login` if not authenticated
+2. User enters email and password
+3. `useAuth()` hook validates credentials and sets `isAuthenticated` state
+4. Session persisted to localStorage
+5. User redirected to `/users` dashboard
+6. Logout clears session and localStorage
+
+### Form Components Usage
+
+#### FormInput
+```tsx
+import { FormInput } from '@/components/Form'
+import { useForm } from 'react-hook-form'
+
+const { control } = useForm()
+
+<FormInput<FormData>
+  name="email"
+  control={control}
+  label="Email"
+  type="email"
+  placeholder="Enter email"
+  required
+/>
+```
+
+#### FormSelect
+```tsx
+import { FormSelect } from '@/components/Form'
+
+const options = [
+  { value: 'active', label: 'Active' },
+  { value: 'inactive', label: 'Inactive' }
+]
+
+<FormSelect<FormData>
+  name="status"
+  control={control}
+  label="Status"
+  options={options}
+/>
+```
+
 ### Data Flow
 1. User logs in via `/login` → Navigated to `/users`
 2. `UsersPage` component manages state between list and detail views
 3. `Users` component fetches data via `userService.fetchUsers()`
 4. React Query caches results with 5-minute stale time
 5. Click user to view details in `UserDetails` component
+6. `UserFilters` uses react-hook-form to manage filter state in real-time
 
 ### Styling Approach
 - **SCSS Modules**: Each component has a corresponding `.scss` file
+- **Form Components**: Shared `Form.scss` with context-specific overrides in parent components
 - **Variables**: Colors, spacing, and breakpoints in `_variables.scss`
-- **Mixins**: Reusable styles in `_mixins.scss`
-- **Functions**: Helper functions in `_functions.scss`
+- **Mixins**: Reusable styles (`input-base`, `flex-center`, `respond-to`) in `_mixins.scss`
+- **Context Overrides**: Form components inherit base styles but can be overridden via `.form-group` selectors
 
 ### React Query Configuration
 ```typescript
@@ -152,7 +228,9 @@ Currently, the application uses **mock data** loaded from `src/data/users.json`.
 - **TypeScript**: Strict mode enabled for type safety
 - **File aliases**: Use `@/` prefix for imports from `src/` (configured in `vite.config.ts`)
 - **Component naming**: PascalCase for components, camelCase for utilities
-- **Styling**: Preferentially use existing SCSS variables to maintain consistency
+- **Asset imports**: All images imported as variables (not inline paths)
+- **Form management**: All forms use react-hook-form with custom form components
+- **Styling**: Preferentially use existing SCSS variables and mixins to maintain consistency
 
 ## Troubleshooting
 
