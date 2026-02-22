@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom'
+import lendsqrLogo from '@/assets/icons/lendsqr-logo.svg'
+import loginIllustration from '@/assets/login-illustration.png'
 import './Login.scss'
 
 export default function LoginPage() {
@@ -13,9 +15,9 @@ export default function LoginPage() {
     <div className="login-page">
       <div className="login-page__hero">
           <div className="login-page__logo">
-            <img src="/src/assets/icons/lendsqr-logo.svg" alt="Lendsqr Logo" />
+            <img src={lendsqrLogo} alt="Lendsqr Logo" />
           </div>
-        <img src="/src/assets/login-illustration.png" alt="Welcome" />
+        <img src={loginIllustration} alt="Welcome" />
       </div>
       <div className="login-page__form-section">
         <div className="login-page__form-container">

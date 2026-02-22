@@ -1,4 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
+import threeDotsIcon from '@/assets/icons/three-dots.svg'
+import viewIcon from '@/assets/svg/npa-view.svg'
+import deleteIcon from '@/assets/svg/npa-delete.svg'
+import userIcon from '@/assets/svg/npa-user.svg'
 import './UserActions.scss'
 
 interface UserActionsProps {
@@ -37,7 +41,7 @@ export default function UserActions({ username, onViewDetails, onBlacklist, onAc
         aria-expanded={isOpen}
         type="button"
       >
-        <img src="/src/assets/icons/three-dots.svg" alt="" aria-hidden="true" />
+        <img src={threeDotsIcon} alt="" aria-hidden="true" />
       </button>
 
       {isOpen && (
@@ -48,7 +52,7 @@ export default function UserActions({ username, onViewDetails, onBlacklist, onAc
             role="menuitem"
             type="button"
           >
-            <img src="/src/assets/svg/npa-view.svg" alt="" aria-hidden="true" />
+            <img src={viewIcon} alt="" aria-hidden="true" />
             View Details
           </button>
           <button
@@ -57,7 +61,7 @@ export default function UserActions({ username, onViewDetails, onBlacklist, onAc
             role="menuitem"
             type="button"
           >
-            <img src="/src/assets/svg/npa-delete.svg" alt="" aria-hidden="true" />
+            <img src={deleteIcon} alt="" aria-hidden="true" />
             Blacklist User
           </button>
           <button
@@ -66,7 +70,7 @@ export default function UserActions({ username, onViewDetails, onBlacklist, onAc
             role="menuitem"
             type="button"
           >
-            <img src="/src/assets/svg/npa-user.svg" alt="" aria-hidden="true" />
+            <img src={userIcon} alt="" aria-hidden="true" />
             Activate User
           </button>
         </div>

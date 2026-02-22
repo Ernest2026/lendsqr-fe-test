@@ -1,5 +1,9 @@
 import React, { Fragment, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import starIcon from '@/assets/svg/star.svg'
+import outlineStarIcon from '@/assets/svg/outline-star.svg'
+import backIcon from '@/assets/icons/back.svg'
+import outlineUserIcon from '@/assets/svg/outline-user.svg'
 import './UserDetails.scss'
 import { fetchUserDetails, type Guarantor } from '@/services/userService'
 
@@ -26,9 +30,9 @@ export default function UserDetails({ setUserPage, userId = '1' }: UserDetailsPr
         {[...Array(3)].map((_, i) => (
           <Fragment key={i}>
             {i < rating ? (
-              <img src="/src/assets/svg/star.svg" alt="" aria-hidden="true" />
+              <img src={starIcon} alt="" aria-hidden="true" />
             ) : (
-              <img src="/src/assets/svg/outline-star.svg" alt="" aria-hidden="true" />
+              <img src={outlineStarIcon} alt="" aria-hidden="true" />
             )}
           </Fragment>
         ))}
@@ -71,7 +75,7 @@ export default function UserDetails({ setUserPage, userId = '1' }: UserDetailsPr
           type="button"
           aria-label="Back to users"
         >
-          <img src="/src/assets/icons/back.svg" alt="" aria-hidden="true" />
+          <img src={backIcon} alt="" aria-hidden="true" />
           Back to Users
         </button>
         <div className="user-details__actions">
@@ -88,9 +92,8 @@ export default function UserDetails({ setUserPage, userId = '1' }: UserDetailsPr
       <div className="profile-card">
         <div className="profile-card__top">
           <div className="profile-avatar" role="img" aria-label="User avatar">
-            <img src="/src/assets/svg/outline-user.svg" alt="" aria-hidden="true" />
+            <img src={outlineUserIcon} alt="" aria-hidden="true" />
           </div>
-
           <div className="profile-card__details">
             <div className="profile-info">
               <h2 className="profile-name">{userData.fullName}</h2>
