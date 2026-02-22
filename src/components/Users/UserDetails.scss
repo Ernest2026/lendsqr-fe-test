@@ -320,6 +320,14 @@
     margin-bottom: 0;
     border-bottom: none;
   }
+
+  @include respond-to(md) {
+    padding-top: 10px;
+  }
+
+  @include respond-to(sm) {
+    padding-top: 10px;
+  }
 }
 
 .section-title {
@@ -732,8 +740,8 @@
     gap: 6px;
 
     label {
-      font-size: 10px;
-      line-height: 12px;
+      font-size: 12px;
+      line-height: 14px;
     }
 
     p {
@@ -762,7 +770,7 @@
   }
 
   .tab {
-    font-size: 11px;
+    font-size: 14px;
     padding: 10px 12px 8px;
     margin: 0;
     flex-shrink: 0;
@@ -779,7 +787,7 @@
   }
 
   .section-title {
-    font-size: 13px;
+    font-size: 16px;
     padding: 16px 0 12px;
     line-height: 15px;
   }
@@ -788,13 +796,13 @@
     gap: 5px;
 
     label {
-      font-size: 10px;
-      line-height: 11px;
+      font-size: 12px;
+      line-height: 14px;
     }
 
     p {
-      font-size: 12px;
-      line-height: 14px;
+      font-size: 14px;
+      line-height: 16px;
     }
   }
 
